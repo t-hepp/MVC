@@ -3,7 +3,25 @@ package View;
 import java.util.Observable;
 import java.util.Observer;
 
+import Controller.Controller;
+import Model.Model;
+
 public class View implements Observer {
+
+	private Model model;
+	private Controller controller;
+
+	private PongFrame frame;
+
+	public View(Model model, Controller controller) {
+		this.model = model;
+		this.controller = controller;
+		model.addObserver(this);
+	}
+
+	public void createAndShowGUI() {
+		this.frame = new PongFrame();
+	}
 
 	@Override
 	public void update(Observable arg0, Object arg1) {
