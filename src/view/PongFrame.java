@@ -24,4 +24,12 @@ public class PongFrame extends JFrame {
 		setVisible(true);
 	}
 
+	public GamePanel getGamePanel() {
+		return game;
+	}
+
+	public ScorePanel getScorePanel() {
+		return score;
+	}
+
 }

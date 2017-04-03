@@ -5,6 +5,7 @@ import java.util.Observer;
 
 import controller.Controller;
 import model.Model;
+import model.Score;
 
 public class View implements Observer {
 
@@ -25,7 +26,13 @@ public class View implements Observer {
 
 	@Override
 	public void update(Observable arg0, Object arg1) {
-		// TODO Auto-generated method stub
+		if (arg0 instanceof Model) {
+
+		}
+		if (arg1 instanceof Score) {
+			Score score = (Score) arg1;
+			frame.getScorePanel().setScore(score);
+		}
 
 	}
 

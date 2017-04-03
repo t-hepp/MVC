@@ -9,6 +9,8 @@ import java.awt.event.ComponentEvent;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import model.Score;
+
 public class ScorePanel extends JPanel {
 
 	private JLabel leftLabel;
@@ -43,12 +45,9 @@ public class ScorePanel extends JPanel {
 
 	}
 
-	public void setLeftScore(int left) {
-		leftLabel.setText(String.valueOf(left));
-	}
-
-	public void setRight(int right) {
-		rightLabel.setText(String.valueOf(right));
+	public void setScore(Score score) {
+		leftLabel.setText(String.valueOf(score.getLeft()));
+		rightLabel.setText(String.valueOf(score.getRight()));
 	}
 
 }
