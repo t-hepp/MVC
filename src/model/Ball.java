@@ -10,6 +10,7 @@ public class Ball {
 
 	private int radius;
 	public static final int DEFAULT_RADIUS = 10;
+	public static final double DEFAULT_SPEED = 0.005;
 
 	public Ball() {
 		this(0.5, 0.5);
@@ -18,7 +19,7 @@ public class Ball {
 	public Ball(double x, double y) {
 		this.x = x;
 		this.y = y;
-		this.vx = 0.005;
+		this.vx = 0;
 		this.vy = 0;
 
 		this.radius = DEFAULT_RADIUS;
