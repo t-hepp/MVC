@@ -1,10 +1,10 @@
-package View;
+package view;
 
 import java.util.Observable;
 import java.util.Observer;
 
-import Controller.Controller;
-import Model.Model;
+import controller.Controller;
+import model.Model;
 
 public class View implements Observer {
 
