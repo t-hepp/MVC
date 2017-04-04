@@ -1,5 +1,7 @@
 package model;
 
+import java.awt.Point;
+
 public class Ball {
 
 	private double x;
@@ -94,6 +96,12 @@ public class Ball {
 
 	public void setYAbs(int y, int windowHeight) {
 		setY((double) y / windowHeight);
+	}
+
+	public Point getCenterAbs(int windowWidth, int windowHeight) {
+		int x = getXAbs(windowWidth) + radius;
+		int y = getYAbs(windowHeight) + radius;
+		return new Point(x, y);
 	}
 
 	public double getX() {
