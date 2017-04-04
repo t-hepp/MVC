@@ -2,6 +2,8 @@ package model;
 
 public interface IModel {
 
+	public void start();
+
 	public Ball getBall();
 
 	public Paddle getLeftPadle();

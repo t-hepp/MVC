@@ -9,6 +9,30 @@ public class Model extends Observable implements IModel {
 	private Paddle rightPaddle;
 	private Score score;
 
+	private Thread notifier = null;
+
+	@Override
+	public void start() {
+		if (notifier == null) {
+			notifier = new Thread(new Runnable() {
+				@Override
+				public void run() {
+					while (true) {
+						setChanged();
+						notifyObservers(score);
+						try {
+							Thread.sleep(10);
+						} catch (Exception ex) {
+						}
+					}
+				}
+			});
+
+			notifier.start();
+		}
+
+	}
+
 	@Override
 	public Ball getBall() {
 		return ball;

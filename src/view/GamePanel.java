@@ -45,10 +45,11 @@ public class GamePanel extends JPanel implements ActionListener {
 
 	private void setup() {
 		ball = new Ball();
-		ball.setXAbs(getWidth() / 2 - ball.getRadius(), getWidth());
-		ball.setYAbs(getHeight() / 2 - ball.getRadius(), getHeight());
+		// ball.setXAbs(getWidth() / 2 - ball.getRadius(), getWidth());
+		// ball.setYAbs(getHeight() / 2 - ball.getRadius(), getHeight());
 
-		// leftPaddle = new Paddle(0.02, 0.5 - ((double) Paddle.DEFAULT_HEIGHT /
+		// leftPaddle = new Paddle(0.02, 0.5 - ((double)
+		// Paddle.DEFAULT_HEIGHT /
 		// 2 / getHeight()));
 		// rightPaddle = new Paddle(getWidth() - 10 - Paddle.DEFAULT_WIDTH,
 		// getHeight() / 2 - Paddle.DEFAULT_HEIGHT / 2);
@@ -83,8 +84,10 @@ public class GamePanel extends JPanel implements ActionListener {
 
 	private void paintBall(Graphics2D gg) {
 		gg.setColor(Color.BLACK);
-		gg.fillOval(ball.getXAbs(getWidth()), ball.getYAbs(getHeight()), ball.getRadius() * 2, ball.getRadius() * 2);
-		ball.checkCollision(getWidth(), getHeight());
+		// gg.fillOval(ball.getXAbs(getWidth()), ball.getYAbs(getHeight()),
+		// ball.getRadius() * 2, ball.getRadius() * 2);
+		gg.fillOval(absX(ball.getX()), absY(ball.getY()), absX(ball.getRadius() * 2), absX(ball.getRadius() * 2));
+		// ball.checkCollision(getWidth(), getHeight());
 		// if (ball.getX() + 2 * ball.getRadius() > getWidth()) {
 		// ball.setVx(ball.getVx() * -1);
 		// }
@@ -95,6 +98,14 @@ public class GamePanel extends JPanel implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
 		repaint();
+	}
+
+	private int absX(double relX) {
+		return (int) Math.round(relX * getWidth());
+	}
+
+	private int absY(double relY) {
+		return (int) Math.round(relY * getHeight());
 	}
 
 }
