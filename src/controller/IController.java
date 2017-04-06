@@ -1,17 +1,12 @@
 package controller;
 
+import model.IModel;
+import view.IView;
+
 public interface IController {
 
-	public void start();
+	void addListener(IView view);
 
-	public void pause();
-
-	public void setLeftV(double v);
-
-	public void setRightV(double v);
-
-	public void leftWin();
-
-	public void rightWin();
+	void setModel(IModel model);
 
 }

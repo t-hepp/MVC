@@ -1,5 +1,7 @@
 package model;
 
+import java.util.Observer;
+
 public interface IModel {
 
 	public void start();
@@ -19,5 +21,7 @@ public interface IModel {
 	public void resetScore();
 
 	public void resetPostitons();
+
+	public void addObserver(Observer o);
 
 }

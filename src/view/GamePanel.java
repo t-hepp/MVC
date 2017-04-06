@@ -97,7 +97,7 @@ public class GamePanel extends JPanel implements ActionListener {
 
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
-		repaint();
+		// repaint();
 	}
 
 	private int absX(double relX) {
