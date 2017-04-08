@@ -2,10 +2,12 @@ package model;
 
 import java.util.Observable;
 
+import model.Paddle.PaddleType;
+
 public class Model extends Observable implements IModel {
 
 	private Ball ball;
-	private Paddle leftPadle;
+	private Paddle leftPaddle;
 	private Paddle rightPaddle;
 	private Score score;
 
@@ -13,6 +15,7 @@ public class Model extends Observable implements IModel {
 
 	public Model() {
 		this.ball = new Ball();
+		this.leftPaddle = new Paddle(PaddleType.LEFT);
 	}
 
 	@Override
@@ -46,7 +49,7 @@ public class Model extends Observable implements IModel {
 
 	@Override
 	public Paddle getLeftPadle() {
-		return leftPadle;
+		return leftPaddle;
 	}
 
 	@Override

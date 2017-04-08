@@ -6,7 +6,7 @@ public class Ball extends Moveable {
 
 	private double radius;
 
-	static final Point2D START_POSITION = new Point2D.Double(0.5, 0.5);
+	static final Point2D START_POSITION = new Point2D.Double(0.5 - DEFAULT_SIZE, 0.5 - DEFAULT_SIZE);
 
 	public Ball() {
 		this.x = START_POSITION.getX();

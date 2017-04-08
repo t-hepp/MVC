@@ -43,6 +43,7 @@ public class GamePanel extends JPanel {
 
 	private void paintPaddle(Graphics2D gg, Paddle paddle) {
 		gg.setColor(Color.BLACK);
+		gg.fillRect(absX(paddle.getX()), absY(paddle.getY()), absX(paddle.getWidth()), absY(paddle.getHeight()));
 	}
 
 	private void paintBall(Graphics2D gg) {
