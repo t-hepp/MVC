@@ -1,19 +1,18 @@
 package model;
 
+import java.awt.geom.Point2D;
+
 public class Ball extends Moveable {
 
 	private double radius;
 
-	public Ball() {
-		this(0.5, 0.5);
-	}
+	static final Point2D START_POSITION = new Point2D.Double(0.5, 0.5);
 
-	public Ball(double x, double y) {
-		this.x = x;
-		this.y = y;
+	public Ball() {
+		this.x = START_POSITION.getX();
+		this.y = START_POSITION.getY();
 		this.vx = 0.005;
 		this.vy = 0;
-
 		this.radius = DEFAULT_SIZE;
 	}
 
@@ -21,6 +20,34 @@ public class Ball extends Moveable {
 	public void move() {
 		setX(x + vx);
 		setY(y + vy);
+	}
+
+	public void verticalCollision() {
+		if (y < 0) {
+			setVy(Math.abs(getVy()));
+		}
+		if (y + 2 * radius > 1) {
+			setVy(-Math.abs(getVy()));
+		}
+		// if (x + 2 * radius > 1) {
+		// setVx(-Math.abs(getVx()));
+		// }
+	}
+
+	public boolean isLeft() {
+		return x + 2 * radius < 0;
+	}
+
+	public boolean isRight() {
+		return x > 1;
+	}
+
+	public void reset() {
+		this.x = START_POSITION.getX();
+		this.y = START_POSITION.getY();
+		this.vx = 0.005;
+		this.vy = 0;
+		this.radius = DEFAULT_SIZE;
 	}
 
 	@Override

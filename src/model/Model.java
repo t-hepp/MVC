@@ -22,6 +22,7 @@ public class Model extends Observable implements IModel {
 				@Override
 				public void run() {
 					while (true) {
+						collide();
 						move();
 						setChanged();
 						notifyObservers(score);
@@ -60,7 +61,8 @@ public class Model extends Observable implements IModel {
 
 	@Override
 	public void leftWin() {
-		score.setLeft(score.getLeft() + 1);
+		resetPostitons();
+		// score.setLeft(score.getLeft() + 1);
 		setChanged();
 		notifyObservers(score);
 	}
@@ -81,8 +83,18 @@ public class Model extends Observable implements IModel {
 
 	@Override
 	public void resetPostitons() {
-		// TODO Auto-generated method stub
+		ball.reset();
 
+	}
+
+	private void collide() {
+		ball.verticalCollision();
+		if (ball.isLeft()) {
+			rightWin();
+		}
+		if (ball.isRight()) {
+			leftWin();
+		}
 	}
 
 	private void move() {
