@@ -1,12 +1,25 @@
 package controller;
 
-import model.IModel;
-import view.IView;
-
 public interface IController {
 
-	void addListener(IView view);
+	void start();
 
-	void setModel(IModel model);
+	void stop();
+
+	void leftUpPressed();
+
+	void leftUpReleased();
+
+	void leftDownPressed();
+
+	void leftDownReleased();
+
+	void rightUpPressed();
+
+	void rightUpReleased();
+
+	void rightDownPressed();
+
+	void rightDownReleased();
 
 }
