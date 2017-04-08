@@ -11,6 +11,10 @@ public class Model extends Observable implements IModel {
 
 	private Thread notifier = null;
 
+	public Model() {
+		this.ball = new Ball();
+	}
+
 	@Override
 	public void start() {
 		if (notifier == null) {
@@ -18,6 +22,7 @@ public class Model extends Observable implements IModel {
 				@Override
 				public void run() {
 					while (true) {
+						move();
 						setChanged();
 						notifyObservers(score);
 						try {
@@ -78,6 +83,12 @@ public class Model extends Observable implements IModel {
 	public void resetPostitons() {
 		// TODO Auto-generated method stub
 
+	}
+
+	private void move() {
+		ball.move();
+		// leftPadle.move();
+		// rightPaddle.move();
 	}
 
 }

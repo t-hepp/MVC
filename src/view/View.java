@@ -27,7 +27,7 @@ public class View implements IView, Observer {
 	}
 
 	public void createAndShowGUI() {
-		this.frame = new PongFrame();
+		this.frame = new PongFrame(model);
 		frame.addKeyListener(new PongKeyListener());
 	}
 
