@@ -25,6 +25,15 @@ public class Paddle extends Moveable {
 
 	}
 
+	public void verticalCollision() {
+		if (y < 0 && getVy() < 0) {
+			setVy(0);
+		}
+		if (y + height > 1 && getVy() > 0) {
+			setVy(0);
+		}
+	}
+
 	public double getWidth() {
 		return width;
 	}

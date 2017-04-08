@@ -94,6 +94,8 @@ public class Model extends Observable implements IModel {
 	}
 
 	private void collide() {
+		leftPaddle.verticalCollision();
+		rightPaddle.verticalCollision();
 		ball.verticalCollision();
 		if (ball.isLeft()) {
 			rightWin();
