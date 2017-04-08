@@ -50,7 +50,7 @@ public class Model extends Observable implements IModel {
 	}
 
 	@Override
-	public Paddle getLeftPadle() {
+	public Paddle getLeftPaddle() {
 		return leftPaddle;
 	}
 
@@ -105,8 +105,8 @@ public class Model extends Observable implements IModel {
 
 	private void move() {
 		ball.move();
-		// leftPadle.move();
-		// rightPaddle.move();
+		leftPaddle.move();
+		rightPaddle.move();
 	}
 
 }

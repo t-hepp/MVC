@@ -25,7 +25,7 @@ public class GamePanel extends JPanel {
 
 	private void setup(IModel model) {
 		ball = model.getBall();
-		leftPaddle = model.getLeftPadle();
+		leftPaddle = model.getLeftPaddle();
 		rightPaddle = model.getRightPaddle();
 	}
 

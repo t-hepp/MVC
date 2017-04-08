@@ -58,14 +58,45 @@ public class View implements IView, Observer {
 
 		@Override
 		public void keyPressed(KeyEvent e) {
-			// TODO Auto-generated method stub
+			switch (e.getKeyCode()) {
+			case KeyEvent.VK_W:
+				controller.leftUpPressed();
+				break;
+			case KeyEvent.VK_S:
+				controller.leftDownPressed();
+				break;
+			case KeyEvent.VK_UP:
+				controller.rightUpPressed();
+				break;
+			case KeyEvent.VK_DOWN:
+				controller.rightDownPressed();
+				break;
+			default:
+				break;
+			}
 
 		}
 
 		@Override
 		public void keyReleased(KeyEvent e) {
-			if (e.getKeyCode() == KeyEvent.VK_SPACE) {
+			switch (e.getKeyCode()) {
+			case KeyEvent.VK_SPACE:
 				controller.start();
+				break;
+			case KeyEvent.VK_W:
+				controller.leftUpReleased();
+				break;
+			case KeyEvent.VK_S:
+				controller.leftDownReleased();
+				break;
+			case KeyEvent.VK_UP:
+				controller.rightUpReleased();
+				break;
+			case KeyEvent.VK_DOWN:
+				controller.rightDownReleased();
+				break;
+			default:
+				break;
 			}
 
 		}

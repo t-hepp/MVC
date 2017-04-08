@@ -1,13 +1,18 @@
 package controller;
 
 import model.IModel;
+import model.Paddle;
 
 public abstract class AbstractController implements IController {
 
 	private final IModel model;
+	private final Paddle left;
+	private final Paddle right;
 
 	public AbstractController(IModel model) {
 		this.model = model;
+		left = model.getLeftPaddle();
+		right = model.getRightPaddle();
 	}
 
 	@Override
@@ -44,5 +49,13 @@ public abstract class AbstractController implements IController {
 
 	@Override
 	public abstract void rightDownReleased();
+
+	public Paddle getLeft() {
+		return left;
+	}
+
+	public Paddle getRight() {
+		return right;
+	}
 
 }

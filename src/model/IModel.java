@@ -8,7 +8,7 @@ public interface IModel {
 
 	public Ball getBall();
 
-	public Paddle getLeftPadle();
+	public Paddle getLeftPaddle();
 
 	public Paddle getRightPaddle();
 

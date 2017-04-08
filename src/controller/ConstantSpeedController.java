@@ -1,6 +1,7 @@
 package controller;
 
 import model.IModel;
+import model.Paddle;
 
 public class ConstantSpeedController extends AbstractController {
 
@@ -10,49 +11,42 @@ public class ConstantSpeedController extends AbstractController {
 
 	@Override
 	public void leftUpPressed() {
-		// TODO Auto-generated method stub
-
+		getLeft().setVy(-Paddle.DEFAULT_SPEED);
 	}
 
 	@Override
 	public void leftUpReleased() {
-		// TODO Auto-generated method stub
-
+		getLeft().setVy(0);
 	}
 
 	@Override
 	public void leftDownPressed() {
-		// TODO Auto-generated method stub
-
+		getLeft().setVy(Paddle.DEFAULT_SPEED);
 	}
 
 	@Override
 	public void leftDownReleased() {
-		// TODO Auto-generated method stub
-
+		getLeft().setVy(0);
 	}
 
 	@Override
 	public void rightUpPressed() {
-		// TODO Auto-generated method stub
-
+		getRight().setVy(-Paddle.DEFAULT_SPEED);
 	}
 
 	@Override
 	public void rightUpReleased() {
-		// TODO Auto-generated method stub
-
+		getRight().setVy(0);
 	}
 
 	@Override
 	public void rightDownPressed() {
-		// TODO Auto-generated method stub
-
+		getRight().setVy(Paddle.DEFAULT_SPEED);
 	}
 
 	@Override
 	public void rightDownReleased() {
-		// TODO Auto-generated method stub
+		getRight().setVy(0);
 
 	}
 

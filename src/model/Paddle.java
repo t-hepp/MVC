@@ -9,6 +9,8 @@ public class Paddle extends Moveable {
 	private static final double START_X_LEFT = 0.05;
 	private static final double START_X_RIGHT = 0.95 - DEFAULT_SIZE;
 
+	public static final double DEFAULT_SPEED = 0.005;
+
 	public Paddle(PaddleType type) {
 		this.setWidth(DEFAULT_SIZE);
 		this.setHeight(DEFAULT_SIZE * HEIGHT_MULTIPLICATOR);
