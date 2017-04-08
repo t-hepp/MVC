@@ -14,8 +14,10 @@ public class Model extends Observable implements IModel {
 	private Thread notifier = null;
 
 	public Model() {
-		this.ball = new Ball();
-		this.leftPaddle = new Paddle(PaddleType.LEFT);
+		ball = new Ball();
+		leftPaddle = new Paddle(PaddleType.LEFT);
+		rightPaddle = new Paddle(PaddleType.RIGHT);
+		score = new Score();
 	}
 
 	@Override
@@ -65,13 +67,14 @@ public class Model extends Observable implements IModel {
 	@Override
 	public void leftWin() {
 		resetPostitons();
-		// score.setLeft(score.getLeft() + 1);
+		score.setLeft(score.getLeft() + 1);
 		setChanged();
 		notifyObservers(score);
 	}
 
 	@Override
 	public void rightWin() {
+		resetPostitons();
 		score.setRight(score.getRight() + 1);
 		setChanged();
 		notifyObservers(score);

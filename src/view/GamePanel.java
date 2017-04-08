@@ -15,6 +15,7 @@ public class GamePanel extends JPanel {
 
 	private Ball ball;
 	private Paddle leftPaddle;
+	private Paddle rightPaddle;
 
 	public GamePanel(IModel model) {
 		super(true);
@@ -25,6 +26,7 @@ public class GamePanel extends JPanel {
 	private void setup(IModel model) {
 		ball = model.getBall();
 		leftPaddle = model.getLeftPadle();
+		rightPaddle = model.getRightPaddle();
 	}
 
 	@Override
@@ -38,6 +40,7 @@ public class GamePanel extends JPanel {
 
 		paintBall(gg);
 		paintPaddle(gg, leftPaddle);
+		paintPaddle(gg, rightPaddle);
 
 	}
 
