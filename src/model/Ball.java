@@ -107,6 +107,10 @@ public class Ball extends Moveable {
 		this.vy = vy;
 	}
 
+	public double getSpeed() {
+		return Math.sqrt(vx * vx + vy * vy);
+	}
+
 	public double getRadius() {
 		return radius;
 	}

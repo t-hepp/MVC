@@ -56,6 +56,10 @@ public class Paddle extends Moveable {
 
 	}
 
+	public double collisionOrientation(Ball ball) {
+		return ball.getCenterY() - (this.getY() + this.getHeight() / 2);
+	}
+
 	public double getWidth() {
 		return width;
 	}

@@ -25,6 +25,13 @@ public class CollisionChecker implements Runnable {
 			if (paddle.isCollidingWithBallX(ball) && paddle.isCollidingWithBallY(ball)) {
 				ball.setVx(paddle.getReboundDirection() * Math.abs(ball.getVx()));
 				// TODO angle
+				double vx = ball.getVx();
+				double vy = ball.getVy();
+				double speed = ball.getSpeed();
+				double vyNew;
+				if (vy > 0) {
+
+				}
 			}
 
 		}
