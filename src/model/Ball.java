@@ -11,7 +11,7 @@ public class Ball extends Moveable {
 	public Ball() {
 		this.x = START_POSITION.getX();
 		this.y = START_POSITION.getY();
-		this.vx = 0.005;
+		this.vx = 0;
 		this.vy = 0;
 		this.radius = DEFAULT_SIZE;
 	}
@@ -45,9 +45,14 @@ public class Ball extends Moveable {
 	public void reset() {
 		this.x = START_POSITION.getX();
 		this.y = START_POSITION.getY();
-		this.vx = 0.005;
+		this.vx = 0;
 		this.vy = 0;
 		this.radius = DEFAULT_SIZE;
+	}
+
+	public void restart() {
+		vx = DEFAULT_SPEED;
+
 	}
 
 	@Override

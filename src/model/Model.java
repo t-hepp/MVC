@@ -21,7 +21,12 @@ public class Model extends Observable implements IModel {
 	}
 
 	@Override
-	public void start() {
+	public void restart() {
+		ball.restart();
+
+	}
+
+	public void init() {
 		if (notifier == null) {
 			notifier = new Thread(new Runnable() {
 				@Override

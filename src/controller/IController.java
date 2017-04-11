@@ -2,7 +2,9 @@ package controller;
 
 public interface IController {
 
-	void start();
+	void startModel();
+
+	void restart();
 
 	void stop();
 

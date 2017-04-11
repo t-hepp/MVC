@@ -16,14 +16,18 @@ public abstract class AbstractController implements IController {
 	}
 
 	@Override
-	public void start() {
-		model.start();
+	public void startModel() {
+		model.init();
+	}
+
+	@Override
+	public void restart() {
+		model.restart();
 	}
 
 	@Override
 	public void stop() {
 		// TODO Auto-generated method stub
-
 	}
 
 	@Override

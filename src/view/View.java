@@ -28,7 +28,11 @@ public class View implements IView, Observer {
 
 	public void createAndShowGUI() {
 		this.frame = new PongFrame(model);
-		frame.addKeyListener(new PongKeyListener());
+		frame.addKeyListener(new PongKeyListener());// TODO
+													// controller.addActionListener
+													// instead
+		model.init();
+
 	}
 
 	@Override
@@ -81,7 +85,7 @@ public class View implements IView, Observer {
 		public void keyReleased(KeyEvent e) {
 			switch (e.getKeyCode()) {
 			case KeyEvent.VK_SPACE:
-				controller.start();
+				controller.restart();
 				break;
 			case KeyEvent.VK_W:
 				controller.leftUpReleased();

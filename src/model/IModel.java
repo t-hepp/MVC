@@ -4,7 +4,9 @@ import java.util.Observer;
 
 public interface IModel {
 
-	public void start();
+	public void init();
+
+	public void restart();
 
 	public Ball getBall();
 
