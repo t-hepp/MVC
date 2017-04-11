@@ -1,8 +1,7 @@
 package view;
 
-import java.awt.Component;
-import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.util.EventListener;
 import java.util.Observable;
 import java.util.Observer;
 
@@ -24,15 +23,13 @@ public class View implements IView, Observer {
 		this.model.addObserver(this);
 
 		controller = new ConstantSpeedController(model);
+
 	}
 
 	public void createAndShowGUI() {
 		this.frame = new PongFrame(model);
-		frame.addKeyListener(new PongKeyListener());// TODO
-													// controller.addActionListener
-													// instead
 		model.init();
-
+		registerEventListener(controller.getEventListener());
 	}
 
 	@Override
@@ -47,70 +44,17 @@ public class View implements IView, Observer {
 
 	}
 
-	@Override
-	public Component getComponent() {
-		return frame;
-	}
-
-	/**
-	 * ...and the night will connect their thoughts.
-	 * 
-	 * @author Thomas
-	 *
-	 */
-	private class PongKeyListener implements KeyListener {
-
-		@Override
-		public void keyPressed(KeyEvent e) {
-			switch (e.getKeyCode()) {
-			case KeyEvent.VK_W:
-				controller.leftUpPressed();
-				break;
-			case KeyEvent.VK_S:
-				controller.leftDownPressed();
-				break;
-			case KeyEvent.VK_UP:
-				controller.rightUpPressed();
-				break;
-			case KeyEvent.VK_DOWN:
-				controller.rightDownPressed();
-				break;
-			default:
-				break;
-			}
-
-		}
-
-		@Override
-		public void keyReleased(KeyEvent e) {
-			switch (e.getKeyCode()) {
-			case KeyEvent.VK_SPACE:
-				controller.restart();
-				break;
-			case KeyEvent.VK_W:
-				controller.leftUpReleased();
-				break;
-			case KeyEvent.VK_S:
-				controller.leftDownReleased();
-				break;
-			case KeyEvent.VK_UP:
-				controller.rightUpReleased();
-				break;
-			case KeyEvent.VK_DOWN:
-				controller.rightDownReleased();
-				break;
-			default:
-				break;
-			}
-
-		}
-
-		@Override
-		public void keyTyped(KeyEvent e) {
-			// TODO Auto-generated method stub
-
+	private void registerEventListener(EventListener eventListener) {
+		switch (controller.getInputType()) {
+		case KEY:
+			frame.addKeyListener((KeyListener) eventListener);
+			break;
+		default:
+			throw new IllegalArgumentException(
+					"The InputType \"" + controller.getInputType() + "\" is not defined for this view.");
 		}
 
 	}
+
 
 }

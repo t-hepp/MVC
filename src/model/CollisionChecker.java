@@ -14,10 +14,17 @@ public class CollisionChecker implements Runnable {
 	public void run() {
 		while (true) {
 			// System.out.println("Type: " + paddle.getType());
-			System.out.println("CL crossed: " + paddle.isCollidingWithBallX(ball));
+			// System.out.println("CL crossed: " +
+			// paddle.isCollidingWithBallX(ball));
+
+			try {
+				Thread.sleep(10);
+			} catch (Exception ex) {
+			}
 
 			if (paddle.isCollidingWithBallX(ball) && paddle.isCollidingWithBallY(ball)) {
 				ball.setVx(paddle.getReboundDirection() * Math.abs(ball.getVx()));
+				// TODO angle
 			}
 
 		}

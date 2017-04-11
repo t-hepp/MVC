@@ -1,5 +1,7 @@
 package controller;
 
+import java.util.EventListener;
+
 import model.IModel;
 import model.Paddle;
 
@@ -14,6 +16,12 @@ public abstract class AbstractController implements IController {
 		left = model.getLeftPaddle();
 		right = model.getRightPaddle();
 	}
+
+	@Override
+	public abstract EventListener getEventListener();
+
+	@Override
+	public abstract InputType getInputType();
 
 	@Override
 	public void startModel() {
