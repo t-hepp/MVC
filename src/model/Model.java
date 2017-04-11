@@ -17,7 +17,14 @@ public class Model extends Observable implements IModel {
 		ball = new Ball();
 		leftPaddle = new Paddle(PaddleType.LEFT);
 		rightPaddle = new Paddle(PaddleType.RIGHT);
+		initCollisionCheckers();
 		score = new Score();
+	}
+
+	private void initCollisionCheckers() {
+		new Thread(new CollisionChecker(ball, leftPaddle)).start();
+		new Thread(new CollisionChecker(ball, rightPaddle)).start();
+
 	}
 
 	@Override

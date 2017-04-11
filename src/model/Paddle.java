@@ -9,7 +9,10 @@ public class Paddle extends Moveable {
 	private static final double START_X_LEFT = 0.05;
 	private static final double START_X_RIGHT = 0.95 - DEFAULT_SIZE;
 
+	private final PaddleType type;
+
 	public Paddle(PaddleType type) {
+		this.type = type;
 		this.setWidth(DEFAULT_SIZE);
 		this.setHeight(DEFAULT_SIZE * HEIGHT_MULTIPLICATOR);
 
@@ -32,6 +35,27 @@ public class Paddle extends Moveable {
 		}
 	}
 
+	public boolean isCollidingWithBallX(Ball ball) {
+		if (type == PaddleType.LEFT) {
+			return ball.getX() < (getX() + getWidth());
+		} else {
+			return (ball.getX() + 2 * ball.getRadius()) > getX();
+		}
+	}
+
+	public boolean isCollidingWithBallY(Ball ball) {
+		return (ball.getCenterY() > this.getY()) && (ball.getCenterY() < (this.getY() + this.getHeight()));
+	}
+
+	public int getReboundDirection() {
+		if (type == PaddleType.LEFT) {
+			return 1;
+		} else {
+			return -1;
+		}
+
+	}
+
 	public double getWidth() {
 		return width;
 	}
@@ -46,6 +70,10 @@ public class Paddle extends Moveable {
 
 	public void setHeight(double height) {
 		this.height = height;
+	}
+
+	public PaddleType getType() {
+		return type;
 	}
 
 	static enum PaddleType {
