@@ -1,12 +1,15 @@
 package model;
 
 import java.awt.geom.Point2D;
+import java.util.Random;
 
 public class Ball extends Moveable {
 
 	private double radius;
 
 	static final Point2D START_POSITION = new Point2D.Double(0.5 - DEFAULT_SIZE, 0.5 - DEFAULT_SIZE);
+
+	private Random random = new Random();
 
 	public Ball() {
 		this.x = START_POSITION.getX();
@@ -51,7 +54,8 @@ public class Ball extends Moveable {
 	}
 
 	public void restart() {
-		vx = DEFAULT_SPEED;
+		vy = (random.nextBoolean() ? 1 : -1) * random.nextDouble() * DEFAULT_SPEED * 0.75;
+		vx = (random.nextBoolean() ? 1 : -1) * Math.sqrt(DEFAULT_SPEED * DEFAULT_SPEED - vy * vy);
 
 	}
 
