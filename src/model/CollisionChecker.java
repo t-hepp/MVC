@@ -2,40 +2,52 @@ package model;
 
 public class CollisionChecker implements Runnable {
 
-	private Ball ball;
-	private Paddle paddle;
+    private Ball ball;
+    private Paddle paddle;
 
-	public CollisionChecker(Ball ball, Paddle paddle) {
-		this.ball = ball;
-		this.paddle = paddle;
-	}
+    public CollisionChecker(final Ball ball, final Paddle paddle) {
+        this.ball = ball;
+        this.paddle = paddle;
+    }
 
-	@Override
-	public void run() {
-		while (true) {
-			// System.out.println("Type: " + paddle.getType());
-			// System.out.println("CL crossed: " +
-			// paddle.isCollidingWithBallX(ball));
+    @Override
+    public void run() {
 
-			try {
-				Thread.sleep(10);
-			} catch (Exception ex) {
-			}
+        while (true) {
+            // System.out.println("Type: " + paddle.getType());
+            // System.out.println("CL crossed: " +
+            // paddle.isCollidingWithBallX(ball));
+            try {
+                Thread.sleep(10);
+            }
+            catch (final Exception ex) {}
 
-			if (paddle.isCollidingWithBallX(ball) && paddle.isCollidingWithBallY(ball)) {
-				ball.setVx(paddle.getReboundDirection() * Math.abs(ball.getVx()));
-				// TODO angle
-				double vx = ball.getVx();
-				double vy = ball.getVy();
-				double speed = ball.getSpeed();
-				double vyNew;
-				if (vy > 0) {
+            if (paddle.isCollidingWithBallX(ball) && paddle.isCollidingWithBallY(ball)) {
+                ball.setVx(paddle.getReboundDirection() * Math.abs(ball.getVx()));
+                // TODO angle
+                rebound();
+                try {
+                    Thread.sleep(30);
+                }
+                catch (final Exception ex) {}
+            }
 
-				}
-			}
+        }
 
-		}
+    }
 
-	}
+    private void rebound() {
+        final double vx = ball.getVx();
+        final double vy = ball.getVy();
+        final double speed = ball.getSpeed();
+        final double maxDiff = speed / 2;
+        final double vyNew = vy + paddle.collisionOrientation(ball) * speed;
+        //        if (vy < 0) {
+        //            vyNew *= -1;
+        //        }
+        System.out.println(paddle.collisionOrientation(ball) * speed);
+        System.out.println(paddle.getType());
+        ball.setVy(vyNew);
+    }
 
 }
