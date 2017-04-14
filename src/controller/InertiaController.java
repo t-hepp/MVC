@@ -9,14 +9,13 @@ import model.Paddle;
 
 public class InertiaController extends AbstractController {
 
-    private InertiaEffect leftUp = new InertiaEffect(getLeft(), 0);
-    private InertiaEffect leftDown = new InertiaEffect(getLeft(), 0);
-    private InertiaEffect rightUp = new InertiaEffect(getRight(), 0);
-    private InertiaEffect rightDown = new InertiaEffect(getRight(), 0);
+    private InertiaEffect leftInertiaEffect = new InertiaEffect(getLeft(), 0);
+    private InertiaEffect rightInertiaEffect = new InertiaEffect(getRight(), 0);
 
     public InertiaController(final IModel model) {
         super(model);
-        new Thread(rightUp).start();
+        new Thread(rightInertiaEffect).start();
+        new Thread(leftInertiaEffect).start();
     }
 
     @Override
@@ -31,75 +30,102 @@ public class InertiaController extends AbstractController {
 
     @Override
     public void leftUpPressed() {
-        // TODO Auto-generated method stub
+        leftInertiaEffect.setDirection(-1);
 
     }
 
     @Override
     public void leftUpReleased() {
-        // TODO Auto-generated method stub
+        leftInertiaEffect.setDirection(0);
 
     }
 
     @Override
     public void leftDownPressed() {
-        // TODO Auto-generated method stub
+        leftInertiaEffect.setDirection(1);
 
     }
 
     @Override
     public void leftDownReleased() {
-        // TODO Auto-generated method stub
+        leftInertiaEffect.setDirection(0);
 
     }
 
     @Override
     public void rightUpPressed() {
-        rightUp.setDirection(-1);
+        rightInertiaEffect.setDirection(-1);
 
     }
 
     @Override
     public void rightUpReleased() {
-        rightUp.setDirection(1);
+        rightInertiaEffect.setDirection(0);
 
     }
 
     @Override
     public void rightDownPressed() {
-        rightDown.setDirection(1);
+        rightInertiaEffect.setDirection(1);
 
     }
 
     @Override
     public void rightDownReleased() {
-        rightDown.setDirection(-1);
+        rightInertiaEffect.setDirection(0);
 
     }
 
     private class InertiaEffect implements Runnable {
 
         private final Paddle paddle;
-        private double signum;
+        //        private double signum;
         private int direction;
+
+        private static final int RATIO = 120;
 
         public InertiaEffect(final Paddle paddle, final int direction) {
             this.paddle = paddle;
-            if (Math.signum(paddle.getVy()) != 0) {
-                setSignum(Math.signum(paddle.getVy()));
-            }
-            else {
-                setSignum(direction);
-            }
+            //            if (Math.signum(paddle.getVy()) != 0) {
+            //                setSignum(Math.signum(paddle.getVy()));
+            //            }
+            //            else {
+            //                setSignum(direction);
+            //            }
             this.direction = direction;
         }
 
         @Override
         public void run() {
+            //            while (true) {
+            //                paddle.setVy(paddle.getVy() + direction * Paddle.DEFAULT_SPEED / 100);
+            //                if (paddle.getVy() > direction * Paddle.DEFAULT_SPEED / 90) {
+            //                    direction = 0;
+            //                }
+            //                try {
+            //                    Thread.sleep(10);
+            //                }
+            //                catch (final Exception ex) {}
+            //            }
+
             while (true) {
-                paddle.setVy(paddle.getVy() + direction * Paddle.DEFAULT_SPEED / 100);
-                if (paddle.getVy() > direction * Paddle.DEFAULT_SPEED / 90) {
-                    direction = 0;
+                paddle.setVy(paddle.getVy() + 2 * direction * Paddle.DEFAULT_SPEED / RATIO);
+                if (paddle.getVy() > Paddle.DEFAULT_SPEED / RATIO) {
+                    final double before = paddle.getVy();
+                    paddle.setVy(paddle.getVy() - Paddle.DEFAULT_SPEED / RATIO);
+                    final double after = paddle.getVy();
+                    System.out.println("dif " + (before - after * 1000000));
+                    System.out.println("down inertia " + (-Paddle.DEFAULT_SPEED / RATIO));
+                }
+                else if (paddle.getVy() < -Paddle.DEFAULT_SPEED / RATIO) {
+                    final double before = paddle.getVy();
+                    paddle.setVy(paddle.getVy() + Paddle.DEFAULT_SPEED / RATIO);
+                    final double after = paddle.getVy();
+                    System.out.println("dif " + (before - after * 1000000));
+                    System.out.println("up inertia " + (Paddle.DEFAULT_SPEED / RATIO));
+                }
+                else {
+                    paddle.setVy(0);
                 }
                 try {
                     Thread.sleep(10);
@@ -115,16 +141,16 @@ public class InertiaController extends AbstractController {
 
         public void setDirection(final int direction) {
             this.direction = direction;
-            System.out.println(direction);
+            //            System.out.println(direction);
         }
 
-        public double getSignum() {
-            return signum;
-        }
-
-        public void setSignum(final double signum) {
-            this.signum = signum;
-        }
+        //        public double getSignum() {
+        //            return signum;
+        //        }
+        //
+        //        public void setSignum(final double signum) {
+        //            this.signum = signum;
+        //        }
 
     }
 
