@@ -18,7 +18,7 @@ public class CollisionChecker implements Runnable {
             // System.out.println("CL crossed: " +
             // paddle.isCollidingWithBallX(ball));
             try {
-                Thread.sleep(10);
+                Thread.sleep(5);
             }
             catch (final Exception ex) {}
 
@@ -41,13 +41,21 @@ public class CollisionChecker implements Runnable {
         final double vy = ball.getVy();
         final double speed = ball.getSpeed();
         final double maxDiff = speed / 2;
-        final double vyNew = vy + paddle.collisionOrientation(ball) * speed;
-        //        if (vy < 0) {
-        //            vyNew *= -1;
-        //        }
-        System.out.println(paddle.collisionOrientation(ball) * speed);
-        System.out.println(paddle.getType());
+        double vyNew = vy + paddle.collisionOrientation(ball) * speed;
+
+        //        System.out.println(paddle.collisionOrientation(ball) * speed);
+        //        System.out.println(paddle.getType());
+
+        final double newSpeed = Math.sqrt(vx * vx + vyNew * vyNew);
+        vyNew = vyNew * (speed / newSpeed);
+        final double vxNew = vx * (speed / newSpeed);
+
+        System.out.println(ball.getSpeed());
         ball.setVy(vyNew);
+        ball.setVx(vxNew);
+        ball.incrementSpeed();
+        System.out.println(ball.getSpeed());
+
     }
 
 }

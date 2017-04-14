@@ -120,8 +120,8 @@ public class Ball extends Moveable {
     }
 
     public void incrementSpeed() {
-        vx *= 1.003;
-        vy *= 1.001;
+        vx *= 1.1;
+        vy *= 1.1;
 
     }
 
