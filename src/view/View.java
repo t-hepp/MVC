@@ -5,56 +5,54 @@ import java.util.EventListener;
 import java.util.Observable;
 import java.util.Observer;
 
-import controller.ConstantSpeedController;
 import controller.IController;
+import controller.InertiaController;
 import model.IModel;
 import model.Model;
 import model.Score;
 
 public class View implements IView, Observer {
 
-	private IModel model;
-	private IController controller;
+    private IModel model;
+    private IController controller;
 
-	private PongFrame frame;
+    private PongFrame frame;
 
-	public View(IModel model) {
-		this.model = model;
-		this.model.addObserver(this);
+    public View(final IModel model) {
+        this.model = model;
+        this.model.addObserver(this);
 
-		controller = new ConstantSpeedController(model);
+        controller = new InertiaController(model);
 
-	}
+    }
 
-	public void createAndShowGUI() {
-		this.frame = new PongFrame(model);
-		model.init();
-		registerEventListener(controller.getEventListener());
-	}
+    public void createAndShowGUI() {
+        frame = new PongFrame(model);
+        model.init();
+        registerEventListener(controller.getEventListener());
+    }
 
-	@Override
-	public void update(Observable arg0, Object arg1) {
-		if (arg0 instanceof Model) {
-			frame.getGamePanel().repaint();
-		}
-		if (arg1 instanceof Score) {
-			Score score = (Score) arg1;
-			frame.getScorePanel().setScore(score);
-		}
+    @Override
+    public void update(final Observable arg0, final Object arg1) {
+        if (arg0 instanceof Model) {
+            frame.getGamePanel().repaint();
+        }
+        if (arg1 instanceof Score) {
+            final Score score = (Score) arg1;
+            frame.getScorePanel().setScore(score);
+        }
 
-	}
+    }
 
-	private void registerEventListener(EventListener eventListener) {
-		switch (controller.getInputType()) {
-		case KEY:
-			frame.addKeyListener((KeyListener) eventListener);
-			break;
-		default:
-			throw new IllegalArgumentException(
-					"The InputType \"" + controller.getInputType() + "\" is not defined for this view.");
-		}
+    private void registerEventListener(final EventListener eventListener) {
+        switch (controller.getInputType()) {
+            case KEY:
+                frame.addKeyListener((KeyListener) eventListener);
+                break;
+            default:
+                throw new IllegalArgumentException("The InputType \"" + controller.getInputType() + "\" is not defined for this view.");
+        }
 
-	}
-
+    }
 
 }
