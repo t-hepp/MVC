@@ -4,30 +4,30 @@ import java.util.EventListener;
 
 public interface IController {
 
-	EventListener getEventListener();
+    EventListener getEventListener();
 
-	InputType getInputType();
+    InputType getInputType();
 
-	void startModel();
+    void startModel();
 
-	void restart();
+    void restart();
 
-	void stop();
+    void stop();
 
-	void leftUpPressed();
+    void leftUpPressed();
 
-	void leftUpReleased();
+    void leftUpReleased();
 
-	void leftDownPressed();
+    void leftDownPressed();
 
-	void leftDownReleased();
+    void leftDownReleased();
 
-	void rightUpPressed();
+    void rightUpPressed();
 
-	void rightUpReleased();
+    void rightUpReleased();
 
-	void rightDownPressed();
+    void rightDownPressed();
 
-	void rightDownReleased();
+    void rightDownReleased();
 
 }

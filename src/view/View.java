@@ -5,8 +5,8 @@ import java.util.EventListener;
 import java.util.Observable;
 import java.util.Observer;
 
+import controller.ConstantSpeedController;
 import controller.IController;
-import controller.InertiaController;
 import model.IModel;
 import model.Model;
 import model.Score;
@@ -22,7 +22,7 @@ public class View implements IView, Observer {
         this.model = model;
         this.model.addObserver(this);
 
-        controller = new InertiaController(model);
+        controller = new ConstantSpeedController(model, true);
 
     }
 

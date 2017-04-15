@@ -1,7 +1,5 @@
 package controller;
 
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
 import java.util.EventListener;
 
 import model.IModel;
@@ -9,18 +7,21 @@ import model.Paddle;
 
 public class InertiaController extends AbstractController {
 
-    private InertiaEffect leftInertiaEffect = new InertiaEffect(getLeft(), 0);
+    protected InertiaEffect leftInertiaEffect = new InertiaEffect(getLeft(), 0);
     private InertiaEffect rightInertiaEffect = new InertiaEffect(getRight(), 0);
 
-    public InertiaController(final IModel model) {
+    public InertiaController(final IModel model, final boolean bot) {
         super(model);
-        new Thread(rightInertiaEffect).start();
         new Thread(leftInertiaEffect).start();
+        new Thread(rightInertiaEffect).start();
+        if (bot) {
+            addBot();
+        }
     }
 
     @Override
     public EventListener getEventListener() {
-        return new PongKeyListener();
+        return new PongKeyListener(this);
     }
 
     @Override
@@ -154,64 +155,4 @@ public class InertiaController extends AbstractController {
 
     }
 
-    /**
-     * ...and the night will connect their thoughts.
-     *
-     * @author Thomas
-     *
-     */
-    private class PongKeyListener implements KeyListener {
-
-        @Override
-        public void keyPressed(final KeyEvent e) {
-            switch (e.getKeyCode()) {
-                case KeyEvent.VK_W:
-                    leftUpPressed();
-                    break;
-                case KeyEvent.VK_S:
-                    leftDownPressed();
-                    break;
-                case KeyEvent.VK_UP:
-                    rightUpPressed();
-                    break;
-                case KeyEvent.VK_DOWN:
-                    rightDownPressed();
-                    break;
-                default:
-                    break;
-            }
-
-        }
-
-        @Override
-        public void keyReleased(final KeyEvent e) {
-            switch (e.getKeyCode()) {
-                case KeyEvent.VK_SPACE:
-                    restart();
-                    break;
-                case KeyEvent.VK_W:
-                    leftUpReleased();
-                    break;
-                case KeyEvent.VK_S:
-                    leftDownReleased();
-                    break;
-                case KeyEvent.VK_UP:
-                    rightUpReleased();
-                    break;
-                case KeyEvent.VK_DOWN:
-                    rightDownReleased();
-                    break;
-                default:
-                    break;
-            }
-
-        }
-
-        @Override
-        public void keyTyped(final KeyEvent e) {
-            // TODO Auto-generated method stub
-
-        }
-
-    }
 }
