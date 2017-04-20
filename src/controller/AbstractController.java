@@ -2,6 +2,7 @@ package controller;
 
 import java.util.EventListener;
 
+import controller.bot.AbstractBot;
 import model.IModel;
 import model.Paddle;
 
@@ -18,8 +19,17 @@ public abstract class AbstractController implements IController {
 
     }
 
-    public void addBot() {
-        new Thread(new PongBot(right, model.getBall(), this)).start();
+    public AbstractController(final IModel model, final AbstractBot bot) {
+        this(model);
+        if (bot != null) {
+            initializeAndAddBot(bot);
+        }
+
+    }
+
+    public void initializeAndAddBot(final AbstractBot bot) {
+        bot.init(right, model.getBall(), this);
+        new Thread(bot).start();
 
     }
 

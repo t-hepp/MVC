@@ -79,6 +79,10 @@ public class Paddle extends Moveable {
         this.height = height;
     }
 
+    public double getCenterY() {
+        return getY() + (getHeight() / 2);
+    }
+
     public PaddleType getType() {
         return type;
     }

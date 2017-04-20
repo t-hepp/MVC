@@ -2,6 +2,7 @@ package controller;
 
 import java.util.EventListener;
 
+import controller.bot.AbstractBot;
 import model.IModel;
 import model.Paddle;
 
@@ -10,13 +11,11 @@ public class InertiaController extends AbstractController {
     protected InertiaEffect leftInertiaEffect = new InertiaEffect(getLeft(), 0);
     private InertiaEffect rightInertiaEffect = new InertiaEffect(getRight(), 0);
 
-    public InertiaController(final IModel model, final boolean bot) {
+    public InertiaController(final IModel model, final AbstractBot bot) {
         super(model);
         new Thread(leftInertiaEffect).start();
         new Thread(rightInertiaEffect).start();
-        if (bot) {
-            addBot();
-        }
+        initializeAndAddBot(bot);
     }
 
     @Override
@@ -115,15 +114,15 @@ public class InertiaController extends AbstractController {
                     final double before = paddle.getVy();
                     paddle.setVy(paddle.getVy() - Paddle.DEFAULT_SPEED / RATIO);
                     final double after = paddle.getVy();
-                    System.out.println("dif " + (before - after * 1000000));
-                    System.out.println("down inertia " + (-Paddle.DEFAULT_SPEED / RATIO));
+                    //                    System.out.println("dif " + (before - after * 1000000));
+                    //                    System.out.println("down inertia " + (-Paddle.DEFAULT_SPEED / RATIO));
                 }
                 else if (paddle.getVy() < -Paddle.DEFAULT_SPEED / RATIO) {
                     final double before = paddle.getVy();
                     paddle.setVy(paddle.getVy() + Paddle.DEFAULT_SPEED / RATIO);
                     final double after = paddle.getVy();
-                    System.out.println("dif " + (before - after * 1000000));
-                    System.out.println("up inertia " + (Paddle.DEFAULT_SPEED / RATIO));
+                    //                    System.out.println("dif " + (before - after * 1000000));
+                    //                    System.out.println("up inertia " + (Paddle.DEFAULT_SPEED / RATIO));
                 }
                 else {
                     paddle.setVy(0);

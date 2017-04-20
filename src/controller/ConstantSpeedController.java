@@ -2,16 +2,14 @@ package controller;
 
 import java.util.EventListener;
 
+import controller.bot.AbstractBot;
 import model.IModel;
 import model.Paddle;
 
 public class ConstantSpeedController extends AbstractController {
 
-    public ConstantSpeedController(final IModel model, final boolean bot) {
-        super(model);
-        if (bot) {
-            addBot();
-        }
+    public ConstantSpeedController(final IModel model, final AbstractBot bot) {
+        super(model, bot);
     }
 
     @Override

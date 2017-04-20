@@ -56,7 +56,7 @@ public class Ball extends Moveable {
     public void restart() {
         //		vy = (random.nextBoolean() ? 1 : -1) * random.nextDouble() * DEFAULT_SPEED * 0.75;
         //		vx = (random.nextBoolean() ? 1 : -1) * Math.sqrt(DEFAULT_SPEED * DEFAULT_SPEED - vy * vy);
-        vx = DEFAULT_SPEED;
+        vx = -DEFAULT_SPEED / 5;
     }
 
     public double getCenterX() {
