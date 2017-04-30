@@ -22,7 +22,7 @@ public class CollisionChecker implements Runnable {
             }
             catch (final Exception ex) {}
 
-            if (paddle.isCollidingWithBallX(ball) && paddle.isCollidingWithBallY(ball)) {
+            if (paddle.isCollidingWithBallHorizontallyX(ball) && paddle.isCollidingWithBallHorizontallyY(ball)) {
                 ball.setVx(paddle.getReboundDirection() * Math.abs(ball.getVx()));
                 // TODO angle
                 rebound();
@@ -31,6 +31,16 @@ public class CollisionChecker implements Runnable {
                 }
                 catch (final Exception ex) {}
             }
+
+            if (paddle.isCollidingWithBallVerticallyX(ball) && paddle.isCollidingWithBallVerticallyY(ball)) {
+                ball.setVy(-ball.getVy());
+                try {
+                    Thread.sleep(30);
+                }
+                catch (final Exception ex) {}
+            }
+
+            //TODO corner collision
 
         }
 

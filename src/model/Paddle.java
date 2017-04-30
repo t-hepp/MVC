@@ -6,8 +6,8 @@ public class Paddle extends Moveable {
     private double height;
     private static final int HEIGHT_MULTIPLICATOR = 5;
     private static final double START_Y = 0.5 - (DEFAULT_SIZE * HEIGHT_MULTIPLICATOR / 2);
-    private static final double START_X_LEFT = 0.05;
-    private static final double START_X_RIGHT = 0.95 - DEFAULT_SIZE;
+    private static final double START_X_LEFT = 0.01;
+    private static final double START_X_RIGHT = 0.99 - DEFAULT_SIZE;
 
     private final PaddleType type;
 
@@ -35,7 +35,7 @@ public class Paddle extends Moveable {
         }
     }
 
-    public boolean isCollidingWithBallX(final Ball ball) {
+    public boolean isCollidingWithBallHorizontallyX(final Ball ball) {
         if (type == PaddleType.LEFT) {
             return ball.getX() < (getX() + getWidth());
         }
@@ -44,8 +44,27 @@ public class Paddle extends Moveable {
         }
     }
 
-    public boolean isCollidingWithBallY(final Ball ball) {
+    public boolean isCollidingWithBallHorizontallyY(final Ball ball) {
         return (ball.getCenterY() > getY()) && (ball.getCenterY() < (getY() + getHeight()));
+    }
+
+    public boolean isCollidingWithBallVerticallyX(final Ball ball) {
+        return (ball.getCenterX() > getX() && ball.getCenterX() < getX() + getWidth());
+    }
+
+    public boolean isCollidingWithBallVerticallyY(final Ball ball) {
+        if (ball.getVy() > 0) {
+            return ball.getY() + ball.getRadius() * 2 > getY();
+        }
+        else {
+            return ball.getCenterY() < getY() + getHeight();
+        }
+    }
+
+    public boolean isCollidingWithBallCorner(final Ball ball) {
+        //TODO
+        return false;
+
     }
 
     public int getReboundDirection() {
@@ -77,6 +96,10 @@ public class Paddle extends Moveable {
 
     public void setHeight(final double height) {
         this.height = height;
+    }
+
+    public double getCenterX() {
+        return getX() + (getWidth() / 2);
     }
 
     public double getCenterY() {

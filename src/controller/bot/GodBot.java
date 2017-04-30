@@ -27,8 +27,16 @@ public class GodBot extends AbstractBot {
     private double calculatePos() {
 
         final double incline = getBall().getVy() / getBall().getVx();
-        final double pos = getBall().getCenterY() + incline * (getPaddle().getX() - (getBall().getX() + getBall().getRadius() * 2));
-
+        double pos = getBall().getCenterY() + incline * (getPaddle().getX() - (getBall().getX() + getBall().getRadius() * 2));
+        System.out.println(pos);
+        final double distance = pos % 1;
+        if (((int) pos) % 2 != 0) {
+            pos = 1 - distance;
+        }
+        else {
+            pos = distance;
+        }
+        //        System.out.println(distance);
         return pos;
     }
 
@@ -53,9 +61,7 @@ public class GodBot extends AbstractBot {
             }
         }
         else {
-            final double t = Math.abs(v) / (120 * Paddle.DEFAULT_SPEED);
-            //            final double x =
-            System.out.println(t);
+            //            final double t = Math.abs(v) / (120 * Paddle.DEFAULT_SPEED);
 
             if ((Math.abs(p.getCenterY() - pos) < p.getHeight() / 4) && v > 0.00001) {
                 if (Math.signum(getPaddle().getVy()) == Math.signum(pos - getPaddle().getCenterY())) {

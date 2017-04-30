@@ -49,7 +49,7 @@ public class Model extends Observable implements IModel {
                         collide();
                         move();
                         setChanged();
-                        notifyObservers(score);
+                        notifyObservers();
                         try {
                             Thread.sleep(10);
                         }
