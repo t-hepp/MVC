@@ -7,7 +7,8 @@ public class Ball extends Moveable {
 
     private double radius;
 
-    static final Point2D START_POSITION = new Point2D.Double(0.5 - DEFAULT_SIZE, 0.5 - DEFAULT_SIZE);
+    //    static final Point2D START_POSITION = new Point2D.Double(0.5 - DEFAULT_SIZE, 0.5 - DEFAULT_SIZE);
+    static final Point2D START_POSITION = new Point2D.Double(0.96, 0.01);
 
     private Random random = new Random();
 
@@ -58,8 +59,10 @@ public class Ball extends Moveable {
         //		vx = (random.nextBoolean() ? 1 : -1) * Math.sqrt(DEFAULT_SPEED * DEFAULT_SPEED - vy * vy);
         //        vx = -DEFAULT_SPEED / 5;
         //TODO debugging mode
-        vx = DEFAULT_SPEED / 5;
+        vx = DEFAULT_SPEED;
+        vx = -0.00001;
         vy = DEFAULT_SPEED;
+        //        vy = 0;
     }
 
     public Point2D getCenter() {

@@ -11,10 +11,14 @@ public class InertiaController extends AbstractController {
     protected InertiaEffect leftInertiaEffect = new InertiaEffect(getLeft(), 0);
     private InertiaEffect rightInertiaEffect = new InertiaEffect(getRight(), 0);
 
-    public InertiaController(final IModel model, final AbstractBot bot) {
+    public InertiaController(final IModel model) {
         super(model);
         new Thread(leftInertiaEffect).start();
         new Thread(rightInertiaEffect).start();
+    }
+
+    public InertiaController(final IModel model, final AbstractBot bot) {
+        this(model);
         initializeAndAddBot(bot);
     }
 

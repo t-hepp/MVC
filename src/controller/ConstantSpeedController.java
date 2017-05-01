@@ -8,6 +8,10 @@ import model.Paddle;
 
 public class ConstantSpeedController extends AbstractController {
 
+    public ConstantSpeedController(final IModel model) {
+        super(model);
+    }
+
     public ConstantSpeedController(final IModel model, final AbstractBot bot) {
         super(model, bot);
     }

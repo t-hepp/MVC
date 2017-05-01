@@ -45,7 +45,7 @@ public class Paddle extends Moveable {
     }
 
     public boolean isCollidingWithBallHorizontallyY(final Ball ball) {
-        return (ball.getCenterY() > getY()) && (ball.getCenterY() < (getY() + getHeight()));
+        return (ball.getCenterY() > getY() && ball.getCenterY() < getY() + getHeight());
     }
 
     public boolean isCollidingWithBallVerticallyX(final Ball ball) {
@@ -56,8 +56,11 @@ public class Paddle extends Moveable {
         if (ball.getVy() > 0) {
             return ball.getY() + ball.getRadius() * 2 > getY();
         }
-        else {
+        else if (ball.getVy() < 0) {
             return ball.getCenterY() < getY() + getHeight();
+        }
+        else {
+            return false;
         }
     }
 

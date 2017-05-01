@@ -1,9 +1,14 @@
 package model;
 
+import java.awt.geom.Point2D;
+import java.util.Random;
+
 public class CollisionChecker implements Runnable {
 
     private Ball ball;
     private Paddle paddle;
+
+    private Random random = new Random();
 
     public CollisionChecker(final Ball ball, final Paddle paddle) {
         this.ball = ball;
@@ -14,33 +19,42 @@ public class CollisionChecker implements Runnable {
     public void run() {
 
         while (true) {
-            // System.out.println("Type: " + paddle.getType());
-            // System.out.println("CL crossed: " +
-            // paddle.isCollidingWithBallX(ball));
-            try {
-                Thread.sleep(5);
-            }
-            catch (final Exception ex) {}
+            sleep();
 
+            //Left-Right Collision
             if (paddle.isCollidingWithBallHorizontallyX(ball) && paddle.isCollidingWithBallHorizontallyY(ball)) {
                 ball.setVx(paddle.getReboundDirection() * Math.abs(ball.getVx()));
                 // TODO angle
                 rebound();
-                try {
-                    Thread.sleep(30);
-                }
-                catch (final Exception ex) {}
+                continue;
             }
 
+            //Up-Down Collision
             if (paddle.isCollidingWithBallVerticallyX(ball) && paddle.isCollidingWithBallVerticallyY(ball)) {
                 ball.setVy(-ball.getVy());
-                try {
-                    Thread.sleep(30);
-                }
-                catch (final Exception ex) {}
+                System.out.println(paddle.getType());
+                continue;
             }
 
             //TODO corner collision
+            final Point2D corner;
+            final double y;
+            if (ball.getVy() > 0) {
+                y = paddle.getY();
+            }
+            else {
+                y = paddle.getY() + paddle.getHeight();
+            }
+            corner = new Point2D.Double(paddle.getX(), y);
+            final Point2D center = ball.getCenter();
+            final double distance = center.distance(corner);
+            if (distance < ball.getRadius()) {
+                final double c = -2 * (ball.getVx() * center.getX() + ball.getVy() * center.getY()) / (center.getX() * center.getX() + center.getY() * center
+                                                                                                                                                             .getY());
+                ball.setVx(ball.getVx() + c * center.getX());
+                ball.setVy(ball.getVy() + c * center.getY());
+                continue;
+            }
 
         }
 
@@ -66,6 +80,13 @@ public class CollisionChecker implements Runnable {
         ball.incrementSpeed();
         System.out.println(ball.getSpeed());
 
+    }
+
+    private void sleep() {
+        try {
+            Thread.sleep(500);
+        }
+        catch (final Exception ex) {}
     }
 
 }
