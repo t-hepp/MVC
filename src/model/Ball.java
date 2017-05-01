@@ -8,7 +8,7 @@ public class Ball extends Moveable {
     private double radius;
 
     //    static final Point2D START_POSITION = new Point2D.Double(0.5 - DEFAULT_SIZE, 0.5 - DEFAULT_SIZE);
-    static final Point2D START_POSITION = new Point2D.Double(0.96, 0.01);
+    static final Point2D START_POSITION = new Point2D.Double(0.95, 0.01);
 
     private Random random = new Random();
 
@@ -103,7 +103,7 @@ public class Ball extends Moveable {
     }
 
     @Override
-    public void setVx(final double vx) {
+    public synchronized void setVx(final double vx) {
         this.vx = vx;
     }
 
@@ -113,7 +113,7 @@ public class Ball extends Moveable {
     }
 
     @Override
-    public void setVy(final double vy) {
+    public synchronized void setVy(final double vy) {
         this.vy = vy;
     }
 

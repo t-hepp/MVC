@@ -31,7 +31,13 @@ public class CollisionChecker implements Runnable {
 
             //Up-Down Collision
             if (paddle.isCollidingWithBallVerticallyX(ball) && paddle.isCollidingWithBallVerticallyY(ball)) {
-                ball.setVy(-ball.getVy());
+                if (ball.getVy() > 0 && ball.getY() < paddle.getY()) {
+                    ball.setVy(-Math.abs(ball.getVy()));
+                }
+                if (ball.getVy() < 0 && ball.getY() > paddle.getY()) {
+                    ball.setVy(Math.abs(ball.getVy()));
+                }
+
                 System.out.println(paddle.getType());
                 continue;
             }
@@ -53,6 +59,8 @@ public class CollisionChecker implements Runnable {
                                                                                                                                                              .getY());
                 ball.setVx(ball.getVx() + c * center.getX());
                 ball.setVy(ball.getVy() + c * center.getY());
+                System.out.println("CORNER" + "  ---  " + paddle.getType());
+                sleep(100);
                 continue;
             }
 
@@ -84,7 +92,14 @@ public class CollisionChecker implements Runnable {
 
     private void sleep() {
         try {
-            Thread.sleep(500);
+            Thread.sleep(10);
+        }
+        catch (final Exception ex) {}
+    }
+
+    private void sleep(final int millis) {
+        try {
+            Thread.sleep(millis);
         }
         catch (final Exception ex) {}
     }
