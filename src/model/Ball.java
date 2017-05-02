@@ -39,11 +39,11 @@ public class Ball extends Moveable {
     }
 
     public boolean isLeft() {
-        return x + 2 * radius < 0;
+        return x < 0;
     }
 
     public boolean isRight() {
-        return x > 1;
+        return x + radius * 2 > 1;
     }
 
     public void reset() {
@@ -60,7 +60,7 @@ public class Ball extends Moveable {
         //        vx = -DEFAULT_SPEED / 5;
         //TODO debugging mode
         vx = DEFAULT_SPEED;
-        vx = -0.00001;
+        vx = 0.00001;
         vy = DEFAULT_SPEED;
         //        vy = 0;
     }

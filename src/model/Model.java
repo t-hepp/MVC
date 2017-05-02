@@ -22,8 +22,8 @@ public class Model extends Observable implements IModel {
     }
 
     private void initCollisionCheckers() {
-        new Thread(new CollisionChecker(ball, leftPaddle)).start();
-        new Thread(new CollisionChecker(ball, rightPaddle)).start();
+
+        new Thread(new CollisionChecker(this)).start();
 
     }
 

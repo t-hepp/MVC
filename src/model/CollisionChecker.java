@@ -6,26 +6,41 @@ import java.util.Random;
 public class CollisionChecker implements Runnable {
 
     private Ball ball;
-    private Paddle paddle;
+    private Paddle left;
+    private Paddle right;
 
     private Random random = new Random();
 
-    public CollisionChecker(final Ball ball, final Paddle paddle) {
-        this.ball = ball;
-        this.paddle = paddle;
+    public CollisionChecker(final IModel model) {
+        ball = model.getBall();
+        left = model.getLeftPaddle();
+        right = model.getRightPaddle();
     }
 
     @Override
     public void run() {
 
+        Paddle paddle = null;
+
         while (true) {
+
             sleep();
+
+            if (ball.getVx() >= 0) {
+                paddle = right;
+            }
+            else if (ball.getVx() < 0) {
+                paddle = left;
+            }
+            else {
+                continue;
+            }
 
             //Left-Right Collision
             if (paddle.isCollidingWithBallHorizontallyX(ball) && paddle.isCollidingWithBallHorizontallyY(ball)) {
                 ball.setVx(paddle.getReboundDirection() * Math.abs(ball.getVx()));
                 // TODO angle
-                rebound();
+                rebound(paddle);
                 continue;
             }
 
@@ -33,12 +48,13 @@ public class CollisionChecker implements Runnable {
             if (paddle.isCollidingWithBallVerticallyX(ball) && paddle.isCollidingWithBallVerticallyY(ball)) {
                 if (ball.getVy() > 0 && ball.getY() < paddle.getY()) {
                     ball.setVy(-Math.abs(ball.getVy()));
+                    System.out.println(paddle.getType());
                 }
                 if (ball.getVy() < 0 && ball.getY() > paddle.getY()) {
                     ball.setVy(Math.abs(ball.getVy()));
+                    System.out.println(paddle.getType());
                 }
 
-                System.out.println(paddle.getType());
                 continue;
             }
 
@@ -68,7 +84,7 @@ public class CollisionChecker implements Runnable {
 
     }
 
-    private void rebound() {
+    private void rebound(final Paddle paddle) {
         final double vx = ball.getVx();
         final double vy = ball.getVy();
         final double speed = ball.getSpeed();
