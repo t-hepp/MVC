@@ -8,6 +8,7 @@ public class CollisionChecker implements Runnable {
     private Ball ball;
     private Paddle left;
     private Paddle right;
+    private final int refreshRate;
 
     private Random random = new Random();
 
@@ -15,6 +16,7 @@ public class CollisionChecker implements Runnable {
         ball = model.getBall();
         left = model.getLeftPaddle();
         right = model.getRightPaddle();
+        refreshRate = model.getRefreshRate();
     }
 
     @Override
@@ -24,7 +26,9 @@ public class CollisionChecker implements Runnable {
 
         while (true) {
 
-            sleep();
+            if (!Thread.interrupted()) {
+                continue;
+            }
 
             if (ball.getVx() >= 0) {
                 paddle = right;

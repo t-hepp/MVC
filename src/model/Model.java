@@ -6,10 +6,14 @@ import model.Paddle.PaddleType;
 
 public class Model extends Observable implements IModel {
 
+    private final int refreshRate = 10;
+
     private Ball ball;
     private Paddle leftPaddle;
     private Paddle rightPaddle;
     private Score score;
+
+    private Thread cc;
 
     private Thread notifier = null;
 
@@ -23,7 +27,8 @@ public class Model extends Observable implements IModel {
 
     private void initCollisionCheckers() {
 
-        new Thread(new CollisionChecker(this)).start();
+        cc = new Thread(new CollisionChecker(this));
+        cc.start();
 
     }
 
@@ -50,8 +55,9 @@ public class Model extends Observable implements IModel {
                         move();
                         setChanged();
                         notifyObservers();
+                        cc.interrupt();
                         try {
-                            Thread.sleep(10);
+                            Thread.sleep(refreshRate);
                         }
                         catch (final Exception ex) {}
                     }
@@ -128,6 +134,11 @@ public class Model extends Observable implements IModel {
         ball.move();
         leftPaddle.move();
         rightPaddle.move();
+    }
+
+    @Override
+    public int getRefreshRate() {
+        return refreshRate;
     }
 
 }
