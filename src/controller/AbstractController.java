@@ -12,6 +12,8 @@ public abstract class AbstractController implements IController {
     private final Paddle left;
     private final Paddle right;
 
+    private EventListener listener = null;
+
     public AbstractController(final IModel model) {
         this.model = model;
         left = model.getLeftPaddle();
@@ -78,12 +80,28 @@ public abstract class AbstractController implements IController {
     @Override
     public abstract void rightDownReleased();
 
+    @Override
+    public void dispose() {
+        leftUpReleased();
+        leftDownReleased();
+        rightUpReleased();
+        rightDownReleased();
+    }
+
     public Paddle getLeft() {
         return left;
     }
 
     public Paddle getRight() {
         return right;
+    }
+
+    public EventListener getListener() {
+        return listener;
+    }
+
+    public void setListener(final EventListener listener) {
+        this.listener = listener;
     }
 
 }

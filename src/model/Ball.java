@@ -7,8 +7,8 @@ public class Ball extends Moveable {
 
     private double radius;
 
-    //    static final Point2D START_POSITION = new Point2D.Double(0.5 - DEFAULT_SIZE, 0.5 - DEFAULT_SIZE);
-    static final Point2D START_POSITION = new Point2D.Double(0.95, 0.01);
+    static final Point2D START_POSITION = new Point2D.Double(0.5 - DEFAULT_SIZE, 0.5 - DEFAULT_SIZE);
+    //    static final Point2D START_POSITION = new Point2D.Double(0.95, 0.01);
 
     private Random random = new Random();
 

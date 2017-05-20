@@ -18,7 +18,10 @@ public class ConstantSpeedController extends AbstractController {
 
     @Override
     public EventListener getEventListener() {
-        return new PongKeyListener(this);
+        if (getListener() == null) {
+            setListener(new PongKeyListener(this));
+        }
+        return getListener();
     }
 
     @Override

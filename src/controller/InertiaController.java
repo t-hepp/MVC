@@ -24,7 +24,10 @@ public class InertiaController extends AbstractController {
 
     @Override
     public EventListener getEventListener() {
-        return new PongKeyListener(this);
+        if (getListener() == null) {
+            setListener(new PongKeyListener(this));
+        }
+        return getListener();
     }
 
     @Override
@@ -80,11 +83,20 @@ public class InertiaController extends AbstractController {
 
     }
 
+    @Override
+    public void dispose() {
+        super.dispose();
+        leftInertiaEffect.stop();
+        rightInertiaEffect.stop();
+    }
+
     private class InertiaEffect implements Runnable {
 
         private final Paddle paddle;
         //        private double signum;
         private int direction;
+
+        private boolean running = true;
 
         private static final int RATIO = 120;
 
@@ -97,6 +109,10 @@ public class InertiaController extends AbstractController {
             //                setSignum(direction);
             //            }
             this.direction = direction;
+        }
+
+        public void stop() {
+            running = false;
         }
 
         @Override
@@ -112,7 +128,7 @@ public class InertiaController extends AbstractController {
             //                catch (final Exception ex) {}
             //            }
 
-            while (true) {
+            while (running) {
                 paddle.setVy(paddle.getVy() + 2 * direction * Paddle.DEFAULT_SPEED / RATIO);
                 if (paddle.getVy() > Paddle.DEFAULT_SPEED / RATIO) {
                     final double before = paddle.getVy();

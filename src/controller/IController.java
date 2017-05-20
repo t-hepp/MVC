@@ -30,4 +30,6 @@ public interface IController {
 
     void rightDownReleased();
 
+    void dispose();
+
 }
