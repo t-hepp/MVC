@@ -21,7 +21,7 @@ public class View implements IView, Observer {
 
     private PongFrame frame;
 
-    private DebugView debugView;
+    private IView debugView = null;
 
     public View(final IModel model) {
         this.model = model;
@@ -33,20 +33,25 @@ public class View implements IView, Observer {
 
     }
 
+    public View(final IModel model, final IView debug) {
+        this(model);
+        debugView = debug;
+    }
+
+    @Override
     public void createAndShowGUI() {
         frame = new PongFrame(model);
-        debugView = new DebugView(model);
-        model.init();
+        //        debugView = new DebugView(model);
         registerEventListener(controller.getEventListener());
         registerMenuListener();
     }
 
     @Override
     public void update(final Observable arg0, final Object arg1) {
-        if (arg0 instanceof Model) {
+        if (arg0 instanceof Model && frame != null) {
             frame.getGamePanel().repaint();
         }
-        if (arg1 instanceof Score) {
+        if (arg1 instanceof Score && frame != null) {
             final Score score = (Score) arg1;
             frame.getScorePanel().setScore(score);
         }
@@ -101,9 +106,20 @@ public class View implements IView, Observer {
 
         }
         if (o == 1) {
-            debugView.showHide();
+            debugView.setVisible(!debugView.isVisible());
         }
 
+    }
+
+    @Override
+    public void setVisible(final boolean visible) {
+        frame.setVisible(visible);
+
+    }
+
+    @Override
+    public boolean isVisible() {
+        return frame.isVisible();
     }
 
 }

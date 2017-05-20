@@ -19,16 +19,22 @@ public class DebugView implements IView, Observer {
         this.model = model;
         this.model.addObserver(this);
 
+    }
+
+    @Override
+    public void createAndShowGUI() {
         frame = new DebugFrame();
 
     }
 
     @Override
     public void update(final Observable arg0, final Object arg1) {
-        final Paddle left = model.getLeftPaddle();
-        final Paddle right = model.getRightPaddle();
-        final Ball ball = model.getBall();
-        frame.yLeft.setState(left.isCollidingWithBallHorizontallyY(ball));
+        if (frame != null) {
+            final Paddle left = model.getLeftPaddle();
+            final Paddle right = model.getRightPaddle();
+            final Ball ball = model.getBall();
+            frame.yLeft.setState(left.isCollidingWithBallHorizontallyY(ball));
+        }
 
     }
 
@@ -41,6 +47,16 @@ public class DebugView implements IView, Observer {
             isVisible = true;
             frame.setVisible(true);
         }
+    }
+
+    @Override
+    public void setVisible(final boolean visible) {
+        frame.setVisible(visible);
+    }
+
+    @Override
+    public boolean isVisible() {
+        return frame.isVisible();
     }
 
 }

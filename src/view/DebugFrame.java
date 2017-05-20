@@ -18,7 +18,7 @@ public class DebugFrame extends JFrame {
         super("DebugView");
         getContentPane().setLayout(null);
 
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
         setSize(600, 600);
 
         yLeft = new DebugLabel("yCollisionRangeLeft");
@@ -31,7 +31,7 @@ public class DebugFrame extends JFrame {
         yRight.setBounds(235, 25, 148, 36);
         getContentPane().add(yRight);
 
-        setVisible(false);
+        setVisible(true);
 
     }
 
