@@ -5,18 +5,18 @@ import view.View;
 
 public class Main {
 
-	public static void main(String[] args) {
+    public static void main(final String[] args) {
 
-		View view = new View(new Model());
-		SwingUtilities.invokeLater(new Runnable() {
+        final View view = new View(new Model());
+        SwingUtilities.invokeLater(new Runnable() {
 
-			@Override
-			public void run() {
-				view.createAndShowGUI();
+            @Override
+            public void run() {
+                view.createAndShowGUI();
 
-			}
-		});
+            }
+        });
 
-	}
+    }
 
 }

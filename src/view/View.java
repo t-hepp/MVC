@@ -21,6 +21,8 @@ public class View implements IView, Observer {
 
     private PongFrame frame;
 
+    private DebugView debugView;
+
     public View(final IModel model) {
         this.model = model;
         this.model.addObserver(this);
@@ -33,6 +35,7 @@ public class View implements IView, Observer {
 
     public void createAndShowGUI() {
         frame = new PongFrame(model);
+        debugView = new DebugView(model);
         model.init();
         registerEventListener(controller.getEventListener());
         registerMenuListener();
@@ -96,6 +99,9 @@ public class View implements IView, Observer {
             }
             registerEventListener(controller.getEventListener());
 
+        }
+        if (o == 1) {
+            debugView.showHide();
         }
 
     }
