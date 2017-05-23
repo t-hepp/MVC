@@ -60,7 +60,7 @@ public class Ball extends Moveable {
         //        vx = -DEFAULT_SPEED / 5;
         //TODO debugging mode
         vx = DEFAULT_SPEED;
-        vx = 0.00001;
+        //        vx = 0.00001;
         vy = DEFAULT_SPEED;
         //        vy = 0;
     }

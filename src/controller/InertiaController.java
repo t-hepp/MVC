@@ -19,7 +19,9 @@ public class InertiaController extends AbstractController {
 
     public InertiaController(final IModel model, final AbstractBot bot) {
         this(model);
-        initializeAndAddBot(bot);
+        if (bot != null) {
+            initializeAndAddBot(bot);
+        }
     }
 
     @Override
@@ -98,7 +100,7 @@ public class InertiaController extends AbstractController {
 
         private boolean running = true;
 
-        private static final int RATIO = 120;
+        private static final int RATIO = 60;
 
         public InertiaEffect(final Paddle paddle, final int direction) {
             this.paddle = paddle;
@@ -132,7 +134,7 @@ public class InertiaController extends AbstractController {
                 paddle.setVy(paddle.getVy() + 2 * direction * Paddle.DEFAULT_SPEED / RATIO);
                 if (paddle.getVy() > Paddle.DEFAULT_SPEED / RATIO) {
                     final double before = paddle.getVy();
-                    paddle.setVy(paddle.getVy() - Paddle.DEFAULT_SPEED / RATIO);
+                    paddle.setVy(paddle.getVy() - 1 * Paddle.DEFAULT_SPEED / RATIO);
                     final double after = paddle.getVy();
                     //                    System.out.println("dif " + (before - after * 1000000));
                     //                    System.out.println("down inertia " + (-Paddle.DEFAULT_SPEED / RATIO));

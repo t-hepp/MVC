@@ -10,6 +10,8 @@ import java.util.Observer;
 import controller.ConstantSpeedController;
 import controller.IController;
 import controller.InertiaController;
+import controller.bot.AbstractBot;
+import controller.bot.PongBot;
 import model.IModel;
 import model.Model;
 import model.Score;
@@ -22,6 +24,7 @@ public class View implements IView, Observer {
     private PongFrame frame;
 
     private IView debugView = null;
+    private AbstractBot bot = new PongBot();
 
     public View(final IModel model) {
         this.model = model;
@@ -29,7 +32,7 @@ public class View implements IView, Observer {
 
         //TODO debugging changes
         //        controller = new InertiaController(model, new GodBot());
-        controller = new InertiaController(model);
+        controller = new InertiaController(model, bot);
 
     }
 
@@ -97,15 +100,15 @@ public class View implements IView, Observer {
             controller.dispose();
             removeEventListener(controller.getEventListener());
             if (controller instanceof ConstantSpeedController) {
-                controller = new InertiaController(model);
+                controller = new InertiaController(model, bot);
             }
             else if (controller instanceof InertiaController) {
-                controller = new ConstantSpeedController(model);
+                controller = new ConstantSpeedController(model, bot);
             }
             registerEventListener(controller.getEventListener());
 
         }
-        if (o == 1) {
+        if (o == 1 && debugView != null) {
             debugView.setVisible(!debugView.isVisible());
         }
 

@@ -7,6 +7,7 @@ public class GodBot extends AbstractBot {
 
     @Override
     public void run() {
+
         while (true) {
 
             if (getBall().getVx() <= 0) {
