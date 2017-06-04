@@ -24,7 +24,7 @@ public class View implements IView, Observer {
     private PongFrame frame;
 
     private IView debugView = null;
-    private AbstractBot bot = new PongBot();
+    private AbstractBot bot = null;
 
     public View(final IModel model) {
         this.model = model;

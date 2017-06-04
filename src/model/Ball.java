@@ -61,7 +61,7 @@ public class Ball extends Moveable {
         //TODO debugging mode
         vx = DEFAULT_SPEED;
         //        vx = 0.00001;
-        vy = DEFAULT_SPEED;
+        vy = 0;
         //        vy = 0;
     }
 
@@ -130,8 +130,8 @@ public class Ball extends Moveable {
     }
 
     public void incrementSpeed() {
-        vx *= 1.1;
-        vy *= 1.1;
+        vx *= 1.15;
+        vy *= 1.15;
 
     }
 

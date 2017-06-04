@@ -1,5 +1,6 @@
 package view;
 
+import java.text.DecimalFormat;
 import java.util.Observable;
 import java.util.Observer;
 
@@ -14,6 +15,8 @@ public class DebugView implements IView, Observer {
     private DebugFrame frame = null;
 
     private boolean isVisible = false;
+
+    private DecimalFormat df = new DecimalFormat(".###");
 
     public DebugView(final IModel model) {
         this.model = model;
@@ -34,6 +37,14 @@ public class DebugView implements IView, Observer {
             final Paddle right = model.getRightPaddle();
             final Ball ball = model.getBall();
             frame.yLeft.setState(left.isCollidingWithBallHorizontallyY(ball));
+            frame.yRight.setState(right.isCollidingWithBallHorizontallyY(ball));
+            frame.xLeft.setState(left.isCollidingWithBallHorizontallyX(ball));
+            frame.xRight.setState(right.isCollidingWithBallHorizontallyX(ball));
+            frame.ballC.setText(frame.ballC.getDefaultText() + df.format(ball.getCenterX()) + "|" + df.format(ball.getCenterY()));
+            frame.ballS.setText(frame.ballS.getDefaultText() + df.format(ball.getSpeed()));
+            frame.ballSX.setText(frame.ballSX.getDefaultText() + df.format(ball.getVx()));
+            frame.ballSY.setText(frame.ballSY.getDefaultText() + df.format(ball.getVy()));
+
         }
 
     }

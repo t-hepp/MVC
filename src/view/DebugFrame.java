@@ -13,13 +13,19 @@ public class DebugFrame extends JFrame {
 
     public DebugLabel yLeft;
     public DebugLabel yRight;
+    public DebugLabel xLeft;
+    public DebugLabel xRight;
+    public DebugLabel ballC;
+    public DebugLabel ballS;
+    public DebugLabel ballSX;
+    public DebugLabel ballSY;
 
     public DebugFrame() {
         super("DebugView");
         getContentPane().setLayout(null);
 
         setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
-        setSize(600, 600);
+        setSize(500, 500);
 
         yLeft = new DebugLabel("yCollisionRangeLeft");
         yLeft.setFont(inactive);
@@ -31,11 +37,47 @@ public class DebugFrame extends JFrame {
         yRight.setBounds(235, 25, 148, 36);
         getContentPane().add(yRight);
 
+        xLeft = new DebugLabel("xCollisionRangeLeft");
+        xLeft.setFont(inactive);
+        xLeft.setBounds(32, 111, 148, 36);
+        getContentPane().add(xLeft);
+
+        xRight = new DebugLabel("xCollisionRangeRight");
+        xRight.setFont(inactive);
+        xRight.setBounds(235, 111, 148, 36);
+        getContentPane().add(xRight);
+
+        ballC = new DebugLabel("Ball Coordinates:  ");
+        ballC.setDefaultText("Ball Coordinates:  ");
+        ballC.setFont(inactive);
+        ballC.setBounds(32, 201, 178, 36);
+        getContentPane().add(ballC);
+
+        ballS = new DebugLabel("Ball Speed:  ");
+        ballS.setDefaultText("Ball Speed:  ");
+        ballS.setFont(inactive);
+        ballS.setBounds(235, 201, 178, 36);
+        getContentPane().add(ballS);
+
+        ballSX = new DebugLabel("Ball Speed x:  ");
+        ballSX.setDefaultText("Ball Speed x:  ");
+        ballSX.setFont(inactive);
+        ballSX.setBounds(32, 289, 148, 36);
+        getContentPane().add(ballSX);
+
+        ballSY = new DebugLabel("Ball Speed y:  ");
+        ballSY.setDefaultText("Ball Speed y:  ");
+        ballSY.setFont(inactive);
+        ballSY.setBounds(235, 289, 148, 36);
+        getContentPane().add(ballSY);
+
         setVisible(true);
 
     }
 
     class DebugLabel extends JLabel {
+
+        private String defaultText = "";
 
         public DebugLabel(final String string) {
             super(string);
@@ -50,6 +92,14 @@ public class DebugFrame extends JFrame {
                 setFont(inactive);
                 setForeground(Color.BLUE);
             }
+        }
+
+        public String getDefaultText() {
+            return defaultText;
+        }
+
+        public void setDefaultText(final String defaultText) {
+            this.defaultText = defaultText;
         }
 
     }
