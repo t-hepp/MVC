@@ -44,6 +44,8 @@ public class DebugView implements IView, Observer {
             frame.ballS.setText(frame.ballS.getDefaultText() + df.format(ball.getSpeed()));
             frame.ballSX.setText(frame.ballSX.getDefaultText() + df.format(ball.getVx()));
             frame.ballSY.setText(frame.ballSY.getDefaultText() + df.format(ball.getVy()));
+            frame.leftS.setText(frame.leftS.getDefaultText() + df.format(left.getVy()));
+            frame.rightS.setText(frame.rightS.getDefaultText() + df.format(right.getVy()));
 
         }
 

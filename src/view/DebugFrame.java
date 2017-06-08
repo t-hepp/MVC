@@ -19,6 +19,8 @@ public class DebugFrame extends JFrame {
     public DebugLabel ballS;
     public DebugLabel ballSX;
     public DebugLabel ballSY;
+    public DebugLabel leftS;
+    public DebugLabel rightS;
 
     public DebugFrame() {
         super("DebugView");
@@ -71,6 +73,18 @@ public class DebugFrame extends JFrame {
         ballSY.setBounds(235, 289, 148, 36);
         getContentPane().add(ballSY);
 
+        leftS = new DebugLabel("left P Speed:  ");
+        leftS.setDefaultText("left P Speed:  ");
+        leftS.setFont(inactive);
+        leftS.setBounds(32, 380, 148, 36);
+        getContentPane().add(leftS);
+
+        rightS = new DebugLabel("right P Speed:  ");
+        rightS.setDefaultText("right P Speed:  ");
+        rightS.setFont(inactive);
+        rightS.setBounds(235, 380, 148, 36);
+        getContentPane().add(rightS);
+
         setVisible(true);
 
     }
@@ -90,7 +104,7 @@ public class DebugFrame extends JFrame {
             }
             else {
                 setFont(inactive);
-                setForeground(Color.BLUE);
+                setForeground(Color.BLACK);
             }
         }
 

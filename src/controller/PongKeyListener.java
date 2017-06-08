@@ -3,12 +3,6 @@ package controller;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
-/**
- * ...and the night will connect their thoughts.
- *
- * @author Thomas
- *
- */
 public class PongKeyListener implements KeyListener {
 
     private IController controller;

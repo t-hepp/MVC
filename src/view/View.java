@@ -11,7 +11,6 @@ import controller.ConstantSpeedController;
 import controller.IController;
 import controller.InertiaController;
 import controller.bot.AbstractBot;
-import controller.bot.PongBot;
 import model.IModel;
 import model.Model;
 import model.Score;
@@ -44,7 +43,6 @@ public class View implements IView, Observer {
     @Override
     public void createAndShowGUI() {
         frame = new PongFrame(model);
-        //        debugView = new DebugView(model);
         registerEventListener(controller.getEventListener());
         registerMenuListener();
     }

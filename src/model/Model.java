@@ -32,11 +32,6 @@ public class Model extends Observable implements IModel {
 
     }
 
-    /**
-     * We were never what people could be.
-     * We were only what we were.
-     * Remember us...
-     */
     @Override
     public void restart() {
         ball.restart();

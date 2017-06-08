@@ -62,7 +62,6 @@ public class CollisionChecker implements Runnable {
                 continue;
             }
 
-            //TODO corner collision
             final Point2D corner;
             final double y;
             if (ball.getVy() > 0) {
