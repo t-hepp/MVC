@@ -95,7 +95,6 @@ public class InertiaController extends AbstractController {
     private class InertiaEffect implements Runnable {
 
         private final Paddle paddle;
-        //        private double signum;
         private int direction;
 
         private boolean running = true;
@@ -104,12 +103,6 @@ public class InertiaController extends AbstractController {
 
         public InertiaEffect(final Paddle paddle, final int direction) {
             this.paddle = paddle;
-            //            if (Math.signum(paddle.getVy()) != 0) {
-            //                setSignum(Math.signum(paddle.getVy()));
-            //            }
-            //            else {
-            //                setSignum(direction);
-            //            }
             this.direction = direction;
         }
 
@@ -119,16 +112,6 @@ public class InertiaController extends AbstractController {
 
         @Override
         public void run() {
-            //            while (true) {
-            //                paddle.setVy(paddle.getVy() + direction * Paddle.DEFAULT_SPEED / 100);
-            //                if (paddle.getVy() > direction * Paddle.DEFAULT_SPEED / 90) {
-            //                    direction = 0;
-            //                }
-            //                try {
-            //                    Thread.sleep(10);
-            //                }
-            //                catch (final Exception ex) {}
-            //            }
 
             while (running) {
                 paddle.setVy(paddle.getVy() + 2 * direction * Paddle.DEFAULT_SPEED / RATIO);
@@ -165,14 +148,6 @@ public class InertiaController extends AbstractController {
             this.direction = direction;
             //            System.out.println(direction);
         }
-
-        //        public double getSignum() {
-        //            return signum;
-        //        }
-        //
-        //        public void setSignum(final double signum) {
-        //            this.signum = signum;
-        //        }
 
     }
 

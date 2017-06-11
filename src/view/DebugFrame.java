@@ -8,8 +8,8 @@ import javax.swing.JLabel;
 
 public class DebugFrame extends JFrame {
 
-    private final Font inactive = new Font("Calibri", Font.PLAIN, 14);
-    private final Font active = new Font("Calibri", Font.BOLD, 15);
+    private final Font inactive = new Font("Calibri", Font.PLAIN, 18);
+    private final Font active = new Font("Calibri", Font.BOLD, 20);
 
     public DebugLabel yLeft;
     public DebugLabel yRight;
@@ -31,58 +31,58 @@ public class DebugFrame extends JFrame {
 
         yLeft = new DebugLabel("yCollisionRangeLeft");
         yLeft.setFont(inactive);
-        yLeft.setBounds(32, 25, 148, 36);
+        yLeft.setBounds(32, 25, 178, 36);
         getContentPane().add(yLeft);
 
         yRight = new DebugLabel("yCollisionRangeRight");
         yRight.setFont(inactive);
-        yRight.setBounds(235, 25, 148, 36);
+        yRight.setBounds(250, 25, 178, 36);
         getContentPane().add(yRight);
 
         xLeft = new DebugLabel("xCollisionRangeLeft");
         xLeft.setFont(inactive);
-        xLeft.setBounds(32, 111, 148, 36);
+        xLeft.setBounds(32, 111, 178, 36);
         getContentPane().add(xLeft);
 
         xRight = new DebugLabel("xCollisionRangeRight");
         xRight.setFont(inactive);
-        xRight.setBounds(235, 111, 148, 36);
+        xRight.setBounds(250, 111, 178, 36);
         getContentPane().add(xRight);
 
         ballC = new DebugLabel("Ball Coordinates:  ");
         ballC.setDefaultText("Ball Coordinates:  ");
         ballC.setFont(inactive);
-        ballC.setBounds(32, 201, 178, 36);
+        ballC.setBounds(32, 201, 210, 36);
         getContentPane().add(ballC);
 
         ballS = new DebugLabel("Ball Speed:  ");
         ballS.setDefaultText("Ball Speed:  ");
         ballS.setFont(inactive);
-        ballS.setBounds(235, 201, 178, 36);
+        ballS.setBounds(250, 201, 178, 36);
         getContentPane().add(ballS);
 
         ballSX = new DebugLabel("Ball Speed x:  ");
         ballSX.setDefaultText("Ball Speed x:  ");
         ballSX.setFont(inactive);
-        ballSX.setBounds(32, 289, 148, 36);
+        ballSX.setBounds(32, 289, 178, 36);
         getContentPane().add(ballSX);
 
         ballSY = new DebugLabel("Ball Speed y:  ");
         ballSY.setDefaultText("Ball Speed y:  ");
         ballSY.setFont(inactive);
-        ballSY.setBounds(235, 289, 148, 36);
+        ballSY.setBounds(250, 289, 178, 36);
         getContentPane().add(ballSY);
 
         leftS = new DebugLabel("left P Speed:  ");
         leftS.setDefaultText("left P Speed:  ");
         leftS.setFont(inactive);
-        leftS.setBounds(32, 380, 148, 36);
+        leftS.setBounds(32, 380, 178, 36);
         getContentPane().add(leftS);
 
         rightS = new DebugLabel("right P Speed:  ");
         rightS.setDefaultText("right P Speed:  ");
         rightS.setFont(inactive);
-        rightS.setBounds(235, 380, 148, 36);
+        rightS.setBounds(250, 380, 178, 36);
         getContentPane().add(rightS);
 
         setVisible(true);

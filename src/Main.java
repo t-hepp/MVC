@@ -4,7 +4,7 @@ import model.IModel;
 import model.Model;
 import view.DebugView;
 import view.IView;
-import view.View;
+import view.PongView;
 
 public class Main {
 
@@ -14,7 +14,7 @@ public class Main {
         model.init();
 
         final IView debug = new DebugView(model);
-        final IView view = new View(model, debug);
+        final IView view = new PongView(model, debug);
 
         SwingUtilities.invokeLater(new Runnable() {
 

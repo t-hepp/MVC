@@ -33,9 +33,6 @@ public class Ball extends Moveable {
         if (y + 2 * radius > 1) {
             setVy(-Math.abs(getVy()));
         }
-        // if (x + 2 * radius > 1) {
-        // setVx(-Math.abs(getVx()));
-        // }
     }
 
     public boolean isLeft() {
@@ -55,13 +52,13 @@ public class Ball extends Moveable {
     }
 
     public void restart() {
-        //		vy = (random.nextBoolean() ? 1 : -1) * random.nextDouble() * DEFAULT_SPEED * 0.75;
-        //		vx = (random.nextBoolean() ? 1 : -1) * Math.sqrt(DEFAULT_SPEED * DEFAULT_SPEED - vy * vy);
+        vy = (random.nextBoolean() ? 1 : -1) * random.nextDouble() * DEFAULT_SPEED * 0.65;
+        vx = (random.nextBoolean() ? 1 : -1) * Math.sqrt(DEFAULT_SPEED * DEFAULT_SPEED - vy * vy);
         //        vx = -DEFAULT_SPEED / 5;
         //TODO debugging mode
-        vx = DEFAULT_SPEED;
+        //        vx = DEFAULT_SPEED;
         //        vx = 0.00001;
-        vy = 0;
+        //        vy = 0;
         //        vy = 0;
     }
 

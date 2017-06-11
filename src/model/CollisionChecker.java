@@ -52,16 +52,17 @@ public class CollisionChecker implements Runnable {
             if (paddle.isCollidingWithBallVerticallyX(ball) && paddle.isCollidingWithBallVerticallyY(ball)) {
                 if (ball.getVy() > 0 && ball.getY() < paddle.getY()) {
                     ball.setVy(-Math.abs(ball.getVy()));
-                    System.out.println(paddle.getType());
+                    //                    System.out.println(paddle.getType());
                 }
                 if (ball.getVy() < 0 && ball.getY() > paddle.getY()) {
                     ball.setVy(Math.abs(ball.getVy()));
-                    System.out.println(paddle.getType());
+                    //                    System.out.println(paddle.getType());
                 }
 
                 continue;
             }
 
+            //Corner Collision
             final Point2D corner;
             final double y;
             if (ball.getVy() > 0) {
@@ -78,7 +79,7 @@ public class CollisionChecker implements Runnable {
                                                                                                                                                              .getY());
                 ball.setVx(ball.getVx() + c * center.getX());
                 ball.setVy(ball.getVy() + c * center.getY());
-                System.out.println("CORNER" + "  ---  " + paddle.getType());
+                //                System.out.println("CORNER" + "  ---  " + paddle.getType());
                 sleep(100);
                 continue;
             }
@@ -94,26 +95,16 @@ public class CollisionChecker implements Runnable {
         final double maxDiff = speed / 2;
         double vyNew = vy + paddle.collisionOrientation(ball) * speed;
 
-        //        System.out.println(paddle.collisionOrientation(ball) * speed);
-        //        System.out.println(paddle.getType());
-
         final double newSpeed = Math.sqrt(vx * vx + vyNew * vyNew);
         vyNew = vyNew * (speed / newSpeed);
         final double vxNew = vx * (speed / newSpeed);
 
-        System.out.println(ball.getSpeed());
+        //        System.out.println(ball.getSpeed());
         ball.setVy(vyNew);
         ball.setVx(vxNew);
         ball.incrementSpeed();
-        System.out.println(ball.getSpeed());
+        //        System.out.println(ball.getSpeed());
 
-    }
-
-    private void sleep() {
-        try {
-            Thread.sleep(10);
-        }
-        catch (final Exception ex) {}
     }
 
     private void sleep(final int millis) {

@@ -9,7 +9,7 @@ public class Moveable {
     protected double vy;
 
     public static final double DEFAULT_SIZE = 0.02;
-    public static final double DEFAULT_SPEED = 0.005;
+    public static final double DEFAULT_SPEED = 0.0075;
 
     public void move() {
         setX(x + vx);

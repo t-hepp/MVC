@@ -81,7 +81,6 @@ public class Paddle extends Moveable {
     }
 
     public double collisionOrientation(final Ball ball) {
-        //        return (ball.getCenterY() - (getY() + getHeight() / 2)) / (getHeight() / 2);
         return (((ball.getCenterY() - getY()) / getHeight()) - 0.5) * 2;
     }
 

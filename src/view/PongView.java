@@ -15,7 +15,7 @@ import model.IModel;
 import model.Model;
 import model.Score;
 
-public class View implements IView, Observer {
+public class PongView implements IView, Observer {
 
     private IModel model;
     private IController controller;
@@ -25,17 +25,17 @@ public class View implements IView, Observer {
     private IView debugView = null;
     private AbstractBot bot = null;
 
-    public View(final IModel model) {
+    public PongView(final IModel model) {
         this.model = model;
         this.model.addObserver(this);
 
         //TODO debugging changes
         //        controller = new InertiaController(model, new GodBot());
-        controller = new InertiaController(model, bot);
+        controller = new ConstantSpeedController(model, bot);
 
     }
 
-    public View(final IModel model, final IView debug) {
+    public PongView(final IModel model, final IView debug) {
         this(model);
         debugView = debug;
     }
